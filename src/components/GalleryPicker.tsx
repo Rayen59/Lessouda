@@ -106,18 +106,18 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-300">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700">
             {label}
           </label>
           {sublabel && (
-            <p className="text-[10px] text-zinc-400 mt-0.5">{sublabel}</p>
+            <p className="text-[10px] text-zinc-500 mt-0.5">{sublabel}</p>
           )}
         </div>
 
         <button
           type="button"
           onClick={() => setShowUrlField(!showUrlField)}
-          className="text-[10px] text-zinc-400 hover:text-white underline"
+          className="text-[10px] text-zinc-600 hover:text-zinc-950 underline cursor-pointer"
         >
           {showUrlField ? "Masquer saisie URL" : "Ou coller une URL"}
         </button>
@@ -133,13 +133,13 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
         className="hidden"
       />
 
-      {/* Gallery Button & Drop area */}
+      {/* Gallery Button & Drop area - Clean White / Slate-50 Design */}
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="group relative border-2 border-dashed border-zinc-700/80 hover:border-white bg-zinc-900/60 hover:bg-zinc-900/90 rounded-2xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200"
+        className="group relative border-2 border-dashed border-zinc-300 hover:border-zinc-950 bg-zinc-50 hover:bg-zinc-100/80 rounded-2xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200"
       >
         <div className="flex flex-col items-center justify-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-lg">
+          <div className="w-12 h-12 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-xs">
             {acceptType === 'video' ? (
               <Film className="w-5 h-5 text-white" />
             ) : (
@@ -148,19 +148,19 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-xs font-bold text-white uppercase tracking-wider font-heading block">
-              {isProcessing ? "Chargement en cours..." : "Ouvrir la Galerie"}
+            <span className="text-xs font-bold text-zinc-950 uppercase tracking-wider font-heading block">
+              {isProcessing ? "Chargement en cours..." : "Ouvrir la Galerie de l'appareil"}
             </span>
-            <span className="text-[11px] text-zinc-400 block">
+            <span className="text-[11px] text-zinc-500 block">
               {acceptType === 'video'
-                ? "Cliquez pour choisir une vidéo depuis votre appareil"
+                ? "Cliquez pour choisir une vidéo depuis votre galerie"
                 : acceptType === 'both'
-                ? "Cliquez pour choisir des photos ou vidéos depuis votre appareil"
+                ? "Cliquez pour choisir des photos ou vidéos depuis votre galerie"
                 : "Cliquez pour sélectionner des photos depuis votre galerie"}
             </span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-zinc-950 font-bold text-[10px] uppercase tracking-wider rounded-lg shadow mt-1">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-950 text-white font-bold text-[10px] uppercase tracking-wider rounded-lg shadow-xs mt-1">
             <Upload className="w-3 h-3" />
             <span>Sélectionner depuis la galerie</span>
           </div>
@@ -169,17 +169,17 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
 
       {/* URL Input option if toggled */}
       {showUrlField && (
-        <form onSubmit={handleAddUrl} className="flex gap-2 p-2 bg-zinc-900 rounded-xl border border-zinc-800">
+        <form onSubmit={handleAddUrl} className="flex gap-2 p-2 bg-zinc-50 rounded-xl border border-zinc-300">
           <input
             type="url"
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
             placeholder="https://... (Lien direct de l'image ou vidéo)"
-            className="flex-1 px-3 py-1.5 bg-black border border-zinc-700 rounded-lg text-xs text-white focus:outline-none focus:border-white"
+            className="flex-1 px-3 py-1.5 bg-white border border-zinc-300 rounded-lg text-xs text-zinc-900 focus:outline-none focus:border-zinc-950"
           />
           <button
             type="submit"
-            className="px-3 py-1.5 bg-white text-zinc-950 text-xs font-bold rounded-lg"
+            className="px-3 py-1.5 bg-zinc-950 text-white text-xs font-bold rounded-lg cursor-pointer"
           >
             Ajouter
           </button>
@@ -189,14 +189,14 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
       {/* Previews Grid from Gallery */}
       {value.length > 0 && (
         <div className="space-y-1.5 pt-1">
-          <span className="text-[10px] font-bold uppercase text-zinc-400 block">
+          <span className="text-[10px] font-bold uppercase text-zinc-600 block">
             Fichier(s) sélectionné(s) ({value.length}) :
           </span>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {value.map((item, idx) => (
               <div
                 key={idx}
-                className="relative aspect-video sm:aspect-square bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden group/thumb shadow"
+                className="relative aspect-video sm:aspect-square bg-zinc-100 border border-zinc-300 rounded-xl overflow-hidden group/thumb shadow-xs"
               >
                 {isVideo(item) ? (
                   <video
@@ -219,7 +219,7 @@ export const GalleryPicker: React.FC<GalleryPickerProps> = ({
                     e.stopPropagation();
                     handleRemove(idx);
                   }}
-                  className="absolute top-1.5 right-1.5 p-1 bg-black/80 hover:bg-red-600 text-white rounded-md transition-colors shadow"
+                  className="absolute top-1.5 right-1.5 p-1 bg-black/80 hover:bg-red-600 text-white rounded-md transition-colors shadow cursor-pointer"
                   title="Supprimer"
                 >
                   <Trash2 className="w-3.5 h-3.5" />

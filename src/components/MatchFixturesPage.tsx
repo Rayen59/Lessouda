@@ -200,20 +200,20 @@ export const MatchFixturesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100 pb-20">
-      {/* Top Athletic Header */}
-      <div className="bg-zinc-950 border-b border-zinc-800 py-6 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 text-zinc-900 pb-20">
+      {/* Top Athletic Header - Clean White */}
+      <div className="bg-white border-b border-zinc-200 py-6 px-4 sm:px-6 lg:px-8 shadow-xs">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <BackButton label="Retour au club" />
             <div>
               <div className="flex items-center gap-2">
-                <Trophy className="w-6 h-6 text-white" />
-                <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-white font-heading">
+                <Trophy className="w-6 h-6 text-zinc-950" />
+                <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-zinc-950 font-heading">
                   Calendrier & Organisation des Matchs
                 </h1>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-xs text-zinc-600 mt-0.5">
                 Rencontres officielles de Lessouda Sportive, billetterie, résultats et scores en direct
               </p>
             </div>
@@ -222,7 +222,7 @@ export const MatchFixturesPage: React.FC = () => {
           {isAdmin && (
             <button
               onClick={() => handleOpenCreateFixture()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-zinc-200 text-zinc-950 font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-lg shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm shrink-0 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>+ Organiser un Match</span>
@@ -232,15 +232,12 @@ export const MatchFixturesPage: React.FC = () => {
       </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
-        {/* ================= DYNAMIC FEATURED MATCH BANNER ================= */}
+        {/* ================= DYNAMIC FEATURED MATCH BANNER - WHITE DOMINANT ================= */}
         {nextUpcomingMatch && (
-          <section className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black p-6 sm:p-10 shadow-2xl">
-            {/* Athletic stadium glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-zinc-700/20 via-transparent to-transparent pointer-events-none" />
-
+          <section className="relative rounded-3xl overflow-hidden border border-zinc-200 bg-white p-6 sm:p-10 shadow-sm">
             <div className="relative z-10 flex flex-col items-center text-center space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest text-white">
-                <Flame className="w-3.5 h-3.5 text-amber-400 animate-bounce" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-zinc-100 border border-zinc-300 rounded-full text-xs font-bold uppercase tracking-widest text-zinc-800">
+                <Flame className="w-3.5 h-3.5 text-amber-500 animate-bounce" />
                 <span>{nextUpcomingMatch.competition}</span>
               </div>
 
@@ -248,17 +245,17 @@ export const MatchFixturesPage: React.FC = () => {
               <div className="w-full max-w-3xl grid grid-cols-3 items-center gap-4 py-4">
                 {/* Home Team */}
                 <div className="flex flex-col items-center space-y-2">
-                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl bg-zinc-900 border-2 border-zinc-700/80 p-2 shadow-2xl flex items-center justify-center overflow-hidden">
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl bg-zinc-50 border-2 border-zinc-200 p-2 shadow-xs flex items-center justify-center overflow-hidden">
                     <img
                       src={nextUpcomingMatch.homeTeam.logo}
                       alt={nextUpcomingMatch.homeTeam.name}
-                      className="w-full h-full object-contain filter drop-shadow-md"
+                      className="w-full h-full object-contain filter drop-shadow-sm"
                     />
                   </div>
-                  <h3 className="font-heading font-black text-lg sm:text-2xl uppercase text-white tracking-wide">
+                  <h3 className="font-heading font-black text-lg sm:text-2xl uppercase text-zinc-950 tracking-wide">
                     {nextUpcomingMatch.homeTeam.name}
                   </h3>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">
                     Domicile
                   </span>
                 </div>
@@ -270,29 +267,29 @@ export const MatchFixturesPage: React.FC = () => {
                       <span className="px-2.5 py-0.5 bg-red-600 text-white font-black text-[10px] uppercase tracking-wider rounded-md animate-pulse mb-1">
                         EN DIRECT
                       </span>
-                      <div className="text-3xl sm:text-5xl font-black font-mono text-white tracking-widest">
+                      <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-950 tracking-widest">
                         {nextUpcomingMatch.score?.home ?? 0} - {nextUpcomingMatch.score?.away ?? 0}
                       </div>
                     </div>
                   ) : nextUpcomingMatch.status === 'finished' ? (
                     <div className="flex flex-col items-center">
-                      <span className="text-[10px] uppercase font-bold text-zinc-400 mb-1">Score Final</span>
-                      <div className="text-3xl sm:text-5xl font-black font-mono text-white tracking-widest">
+                      <span className="text-[10px] uppercase font-bold text-zinc-500 mb-1">Score Final</span>
+                      <div className="text-3xl sm:text-5xl font-black font-mono text-zinc-950 tracking-widest">
                         {nextUpcomingMatch.score?.home ?? 0} - {nextUpcomingMatch.score?.away ?? 0}
                       </div>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-full bg-white text-zinc-950 font-black text-sm flex items-center justify-center shadow-2xl font-heading">
+                      <div className="w-12 h-12 rounded-full bg-zinc-950 text-white font-black text-sm flex items-center justify-center shadow-md font-heading">
                         VS
                       </div>
-                      <div className="mt-2 text-xs font-mono font-bold text-white bg-zinc-900 px-3 py-1 rounded-lg border border-zinc-800">
+                      <div className="mt-2 text-xs font-mono font-bold text-zinc-800 bg-zinc-100 px-3 py-1 rounded-lg border border-zinc-200">
                         {nextUpcomingMatch.time}
                       </div>
                     </div>
                   )}
 
-                  <div className="text-xs text-zinc-400 font-medium flex items-center gap-1.5 mt-1">
+                  <div className="text-xs text-zinc-500 font-medium flex items-center gap-1.5 mt-1">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{nextUpcomingMatch.date}</span>
                   </div>
@@ -300,31 +297,31 @@ export const MatchFixturesPage: React.FC = () => {
 
                 {/* Away Team */}
                 <div className="flex flex-col items-center space-y-2">
-                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl bg-zinc-900 border-2 border-zinc-700/80 p-2 shadow-2xl flex items-center justify-center overflow-hidden">
+                  <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl bg-zinc-50 border-2 border-zinc-200 p-2 shadow-xs flex items-center justify-center overflow-hidden">
                     <img
                       src={nextUpcomingMatch.awayTeam.logo}
                       alt={nextUpcomingMatch.awayTeam.name}
-                      className="w-full h-full object-contain filter drop-shadow-md"
+                      className="w-full h-full object-contain filter drop-shadow-sm"
                     />
                   </div>
-                  <h3 className="font-heading font-black text-lg sm:text-2xl uppercase text-white tracking-wide">
+                  <h3 className="font-heading font-black text-lg sm:text-2xl uppercase text-zinc-950 tracking-wide">
                     {nextUpcomingMatch.awayTeam.name}
                   </h3>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">
                     Extérieur
                   </span>
                 </div>
               </div>
 
               {/* Stadium & Location */}
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-400">
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-600">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-white" />
+                  <MapPin className="w-4 h-4 text-zinc-800" />
                   {nextUpcomingMatch.stadium}
                 </span>
                 <span>·</span>
                 <span className="flex items-center gap-1.5">
-                  <Ticket className="w-4 h-4 text-white" />
+                  <Ticket className="w-4 h-4 text-zinc-800" />
                   {nextUpcomingMatch.ticketPrice || 'Entrée Supporters Gratuite'}
                 </span>
               </div>
@@ -334,7 +331,7 @@ export const MatchFixturesPage: React.FC = () => {
                 <div className="pt-2 flex gap-2">
                   <button
                     onClick={() => handleOpenScoreModal(nextUpcomingMatch)}
-                    className="px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors flex items-center gap-2"
+                    className="px-4 py-2 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors flex items-center gap-2 cursor-pointer shadow-xs"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                     <span>Mettre à jour le Score & Partager dans News</span>
@@ -346,56 +343,56 @@ export const MatchFixturesPage: React.FC = () => {
         )}
 
         {/* Filter Tabs */}
-        <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-          <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
+          <div className="flex items-center gap-1.5 bg-zinc-100 p-1 rounded-2xl border border-zinc-200 text-xs">
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all ${
-                activeTab === 'all' ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                activeTab === 'all' ? 'bg-white text-zinc-950 shadow-xs' : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
-              Tous les matchs ({fixtures.length})
+              Tous ({fixtures.length})
             </button>
             <button
               onClick={() => setActiveTab('upcoming')}
-              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all ${
-                activeTab === 'upcoming' ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                activeTab === 'upcoming' ? 'bg-white text-zinc-950 shadow-xs' : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
-              Matchs à venir ({fixtures.filter((f) => f.status === 'upcoming' || f.status === 'live').length})
+              À venir ({fixtures.filter((f) => f.status === 'upcoming' || f.status === 'live').length})
             </button>
             <button
               onClick={() => setActiveTab('finished')}
-              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all ${
-                activeTab === 'finished' ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400 hover:text-white'
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                activeTab === 'finished' ? 'bg-white text-zinc-950 shadow-xs' : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
-              Résultats terminés ({fixtures.filter((f) => f.status === 'finished').length})
+              Terminés ({fixtures.filter((f) => f.status === 'finished').length})
             </button>
           </div>
 
-          <span className="text-xs font-mono text-zinc-400">
+          <span className="text-xs font-mono font-bold text-zinc-500">
             Saison 2026
           </span>
         </div>
 
         {/* Matches Grid */}
         {filteredFixtures.length === 0 ? (
-          <div className="py-20 text-center bg-zinc-950 border border-zinc-800 rounded-3xl p-8 max-w-xl mx-auto shadow-2xl">
-            <Trophy className="w-12 h-12 text-zinc-600 mx-auto mb-3" />
-            <h3 className="text-lg font-black uppercase text-white font-heading tracking-wider mb-1">
+          <div className="py-20 text-center bg-white border border-zinc-200 rounded-3xl p-8 max-w-xl mx-auto shadow-sm">
+            <Trophy className="w-12 h-12 text-zinc-400 mx-auto mb-3" />
+            <h3 className="text-lg font-black uppercase text-zinc-950 font-heading tracking-wider mb-1">
               Aucun match programmé pour le moment
             </h3>
-            <p className="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed mb-5">
+            <p className="text-xs text-zinc-600 max-w-sm mx-auto leading-relaxed mb-5">
               {isAdmin
-                ? "Vous pouvez planifier des rencontres amicales ou officielles en sélectionnant votre équipe et l'adversaire avec logos et stade."
+                ? "Vous pouvez planifier des rencontres amicales ou officielles en choisissant l'adversaire, les logos et le stade."
                 : "Les prochaines rencontres officielles de Lessouda Sportive seront annoncées ici."}
             </p>
 
             {isAdmin && (
               <button
                 onClick={() => handleOpenCreateFixture()}
-                className="px-6 py-3 bg-white hover:bg-zinc-200 text-zinc-950 font-black text-xs uppercase tracking-wider rounded-xl shadow transition-colors inline-flex items-center gap-2 cursor-pointer"
+                className="px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow transition-colors inline-flex items-center gap-2 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Planifier une première rencontre</span>
@@ -407,21 +404,21 @@ export const MatchFixturesPage: React.FC = () => {
             {filteredFixtures.map((fixture) => (
               <article
                 key={fixture.id}
-                className="bg-zinc-950 border border-zinc-800/90 hover:border-zinc-700 rounded-3xl p-6 flex flex-col justify-between shadow-xl transition-all duration-300 group"
+                className="bg-white border border-zinc-200 hover:border-zinc-300 rounded-3xl p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 group"
               >
                 <div>
                   {/* Top competition strip */}
-                  <div className="flex items-center justify-between pb-3 border-b border-zinc-900 text-xs">
-                    <span className="font-bold text-zinc-300 uppercase tracking-wider">
+                  <div className="flex items-center justify-between pb-3 border-b border-zinc-100 text-xs">
+                    <span className="font-bold text-zinc-700 uppercase tracking-wider">
                       {fixture.competition}
                     </span>
                     <span
                       className={`px-2.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
                         fixture.status === 'live'
-                          ? 'bg-red-950 text-red-400 border border-red-800 animate-pulse'
+                          ? 'bg-red-50 text-red-600 border border-red-200 animate-pulse'
                           : fixture.status === 'finished'
-                          ? 'bg-zinc-900 text-zinc-300 border border-zinc-800'
-                          : 'bg-white text-zinc-950'
+                          ? 'bg-zinc-100 text-zinc-700 border border-zinc-200'
+                          : 'bg-zinc-950 text-white'
                       }`}
                     >
                       {fixture.status === 'live' ? 'En Direct' : fixture.status === 'finished' ? 'Terminé' : 'À venir'}
@@ -432,14 +429,14 @@ export const MatchFixturesPage: React.FC = () => {
                   <div className="grid grid-cols-7 items-center gap-2 py-6">
                     {/* Home Team */}
                     <div className="col-span-3 flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 p-1 flex items-center justify-center shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-200 p-1 flex items-center justify-center shrink-0">
                         <img
                           src={fixture.homeTeam.logo}
                           alt={fixture.homeTeam.name}
                           className="w-full h-full object-contain"
                         />
                       </div>
-                      <span className="font-heading font-black text-sm uppercase text-white line-clamp-2">
+                      <span className="font-heading font-black text-sm uppercase text-zinc-950 line-clamp-2">
                         {fixture.homeTeam.name}
                       </span>
                     </div>
@@ -447,11 +444,11 @@ export const MatchFixturesPage: React.FC = () => {
                     {/* Middle Score / Time */}
                     <div className="col-span-1 text-center">
                       {fixture.status === 'finished' || fixture.status === 'live' ? (
-                        <div className="font-mono font-black text-xl text-white">
+                        <div className="font-mono font-black text-xl text-zinc-950">
                           {fixture.score?.home ?? 0} - {fixture.score?.away ?? 0}
                         </div>
                       ) : (
-                        <span className="text-xs font-mono font-bold text-zinc-400 bg-zinc-900 px-2 py-1 rounded">
+                        <span className="text-xs font-mono font-bold text-zinc-700 bg-zinc-100 px-2 py-1 rounded border border-zinc-200">
                           {fixture.time}
                         </span>
                       )}
@@ -459,10 +456,10 @@ export const MatchFixturesPage: React.FC = () => {
 
                     {/* Away Team */}
                     <div className="col-span-3 flex items-center justify-end gap-3 text-right">
-                      <span className="font-heading font-black text-sm uppercase text-white line-clamp-2">
+                      <span className="font-heading font-black text-sm uppercase text-zinc-950 line-clamp-2">
                         {fixture.awayTeam.name}
                       </span>
-                      <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 p-1 flex items-center justify-center shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-zinc-50 border border-zinc-200 p-1 flex items-center justify-center shrink-0">
                         <img
                           src={fixture.awayTeam.logo}
                           alt={fixture.awayTeam.name}
@@ -474,27 +471,27 @@ export const MatchFixturesPage: React.FC = () => {
 
                   {/* Scorers list if any */}
                   {fixture.scorers && fixture.scorers.length > 0 && (
-                    <div className="p-3 bg-zinc-900/60 border border-zinc-800 rounded-xl text-xs space-y-1 mb-4">
-                      <span className="text-[10px] font-bold uppercase text-zinc-400 block mb-1">
+                    <div className="p-3 bg-zinc-50 border border-zinc-200 rounded-xl text-xs space-y-1 mb-4">
+                      <span className="text-[10px] font-bold uppercase text-zinc-500 block mb-1">
                         Buteurs :
                       </span>
                       {fixture.scorers.map((s, idx) => (
-                        <div key={idx} className="flex items-center justify-between text-zinc-300 text-[11px]">
+                        <div key={idx} className="flex items-center justify-between text-zinc-800 text-[11px] font-medium">
                           <span>⚽ {s.player}</span>
-                          <span className="font-mono text-zinc-400">{s.minute}</span>
+                          <span className="font-mono text-zinc-500">{s.minute}</span>
                         </div>
                       ))}
                     </div>
                   )}
 
                   {/* Stadium info */}
-                  <div className="flex flex-wrap items-center justify-between text-xs text-zinc-400 pt-2 border-t border-zinc-900">
+                  <div className="flex flex-wrap items-center justify-between text-xs text-zinc-600 pt-2 border-t border-zinc-100">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5" />
+                      <MapPin className="w-3.5 h-3.5 text-zinc-800" />
                       {fixture.stadium}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
+                      <Calendar className="w-3.5 h-3.5 text-zinc-800" />
                       {fixture.date}
                     </span>
                   </div>
@@ -502,10 +499,10 @@ export const MatchFixturesPage: React.FC = () => {
 
                 {/* Bottom Actions */}
                 {isAdmin ? (
-                  <div className="pt-4 mt-4 border-t border-zinc-900 flex items-center justify-between">
+                  <div className="pt-4 mt-4 border-t border-zinc-100 flex items-center justify-between">
                     <button
                       onClick={() => handleOpenScoreModal(fixture)}
-                      className="px-3 py-1.5 bg-white text-zinc-950 font-bold text-xs uppercase rounded-xl hover:bg-zinc-200 transition-colors flex items-center gap-1.5 shadow"
+                      className="px-3 py-1.5 bg-zinc-950 text-white font-bold text-xs uppercase rounded-xl hover:bg-zinc-800 transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
                     >
                       <Trophy className="w-3.5 h-3.5" />
                       <span>Score & Partager dans News</span>
@@ -514,7 +511,7 @@ export const MatchFixturesPage: React.FC = () => {
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={() => handleOpenCreateFixture(fixture)}
-                        className="p-1.5 text-zinc-300 hover:text-white bg-zinc-900 rounded-lg border border-zinc-800"
+                        className="p-1.5 text-zinc-700 hover:text-zinc-950 bg-zinc-100 hover:bg-zinc-200 rounded-lg border border-zinc-200 cursor-pointer"
                         title="Modifier"
                       >
                         <Edit3 className="w-3.5 h-3.5" />
@@ -525,7 +522,7 @@ export const MatchFixturesPage: React.FC = () => {
                             deleteFixture(fixture.id);
                           }
                         }}
-                        className="p-1.5 text-red-400 hover:bg-zinc-900 rounded-lg border border-zinc-800"
+                        className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg border border-zinc-200 cursor-pointer"
                         title="Supprimer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -533,35 +530,35 @@ export const MatchFixturesPage: React.FC = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="pt-4 mt-4 border-t border-zinc-900 flex items-center justify-between text-xs">
-                    <span className="text-zinc-400 font-medium">Pronostic supporter :</span>
+                  <div className="pt-4 mt-4 border-t border-zinc-100 flex items-center justify-between text-xs">
+                    <span className="text-zinc-500 font-medium">Pronostic supporter :</span>
                     <div className="flex gap-1.5">
                       <button
                         onClick={() => setUserPredictions({ ...userPredictions, [fixture.id]: 'home' })}
-                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors ${
+                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer ${
                           userPredictions[fixture.id] === 'home'
-                            ? 'bg-white text-zinc-950 shadow'
-                            : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
+                            ? 'bg-zinc-950 text-white shadow-xs'
+                            : 'bg-zinc-100 text-zinc-700 border border-zinc-200 hover:bg-zinc-200'
                         }`}
                       >
                         1 (Victoire LSSB)
                       </button>
                       <button
                         onClick={() => setUserPredictions({ ...userPredictions, [fixture.id]: 'draw' })}
-                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors ${
+                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer ${
                           userPredictions[fixture.id] === 'draw'
-                            ? 'bg-white text-zinc-950 shadow'
-                            : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
+                            ? 'bg-zinc-950 text-white shadow-xs'
+                            : 'bg-zinc-100 text-zinc-700 border border-zinc-200 hover:bg-zinc-200'
                         }`}
                       >
                         Nul
                       </button>
                       <button
                         onClick={() => setUserPredictions({ ...userPredictions, [fixture.id]: 'away' })}
-                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors ${
+                        className={`px-2.5 py-1 rounded text-xs font-bold transition-colors cursor-pointer ${
                           userPredictions[fixture.id] === 'away'
-                            ? 'bg-white text-zinc-950 shadow'
-                            : 'bg-zinc-900 text-zinc-400 border border-zinc-800'
+                            ? 'bg-zinc-950 text-white shadow-xs'
+                            : 'bg-zinc-100 text-zinc-700 border border-zinc-200 hover:bg-zinc-200'
                         }`}
                       >
                         2
@@ -577,15 +574,15 @@ export const MatchFixturesPage: React.FC = () => {
 
       {/* ================= MODAL: CREATE / EDIT FIXTURE ================= */}
       {isFixtureModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-xl my-8 bg-zinc-950 border border-zinc-800 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-100 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-800 mb-5">
-              <h3 className="text-xl font-black uppercase tracking-wider text-white font-heading">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-xl my-8 bg-white border border-zinc-200 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-900 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-zinc-200 mb-5">
+              <h3 className="text-xl font-black uppercase tracking-wider text-zinc-950 font-heading">
                 {editingFixtureId ? 'Modifier la Rencontre' : 'Organiser un Nouveau Match'}
               </h3>
               <button
                 onClick={() => setIsFixtureModalOpen(false)}
-                className="text-zinc-400 hover:text-white"
+                className="text-zinc-500 hover:text-zinc-950 cursor-pointer"
               >
                 ✕
               </button>
@@ -593,13 +590,13 @@ export const MatchFixturesPage: React.FC = () => {
 
             <form onSubmit={handleSaveFixture} className="space-y-4">
               <div>
-                <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                   Compétition *
                 </label>
                 <select
                   value={competition}
                   onChange={(e) => setCompetition(e.target.value)}
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                  className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
                 >
                   {COMPETITION_PRESETS.map((comp) => (
                     <option key={comp} value={comp}>{comp}</option>
@@ -608,21 +605,21 @@ export const MatchFixturesPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                   Lieu du match pour Lessouda Sportive
                 </label>
-                <div className="grid grid-cols-2 gap-2 p-1 bg-zinc-900 rounded-xl border border-zinc-800 text-xs font-bold">
+                <div className="grid grid-cols-2 gap-2 p-1 bg-zinc-100 rounded-xl border border-zinc-200 text-xs font-bold">
                   <button
                     type="button"
                     onClick={() => setIsLSSBHome(true)}
-                    className={`py-2 rounded-lg ${isLSSBHome ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400'}`}
+                    className={`py-2 rounded-lg cursor-pointer ${isLSSBHome ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600'}`}
                   >
                     À Domicile (Lessouda)
                   </button>
                   <button
                     type="button"
                     onClick={() => setIsLSSBHome(false)}
-                    className={`py-2 rounded-lg ${!isLSSBHome ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400'}`}
+                    className={`py-2 rounded-lg cursor-pointer ${!isLSSBHome ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600'}`}
                   >
                     À l'Extérieur (Déplacement)
                   </button>
@@ -631,7 +628,7 @@ export const MatchFixturesPage: React.FC = () => {
 
               {/* Opponent Selection with presets */}
               <div className="space-y-2">
-                <label className="block text-[11px] font-bold uppercase text-zinc-400">
+                <label className="block text-[11px] font-bold uppercase text-zinc-700">
                   Équipe Adverse *
                 </label>
                 <div className="flex flex-wrap gap-2 text-xs">
@@ -643,10 +640,10 @@ export const MatchFixturesPage: React.FC = () => {
                         setOpponentName(opp.name);
                         setOpponentLogo(opp.logo);
                       }}
-                      className={`px-3 py-1.5 rounded-lg border text-xs transition-colors ${
+                      className={`px-3 py-1.5 rounded-lg border text-xs transition-colors cursor-pointer ${
                         opponentName === opp.name
-                          ? 'bg-zinc-800 text-white border-zinc-600 font-bold'
-                          : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:text-white'
+                          ? 'bg-zinc-950 text-white border-zinc-950 font-bold'
+                          : 'bg-zinc-100 text-zinc-700 border-zinc-200 hover:bg-zinc-200'
                       }`}
                     >
                       {opp.shortName}
@@ -660,12 +657,12 @@ export const MatchFixturesPage: React.FC = () => {
                   value={opponentName}
                   onChange={(e) => setOpponentName(e.target.value)}
                   placeholder="Nom de l'équipe adverse"
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                  className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
                 />
 
                 <GalleryPicker
                   label="Logo de l'équipe adverse (depuis la galerie)"
-                  sublabel="Choisissez le logo de l'adversaire depuis votre galerie"
+                  sublabel="Sélectionnez le blason de l'adversaire depuis votre galerie de photos"
                   acceptType="image"
                   multiple={false}
                   value={opponentLogo ? [opponentLogo] : []}
@@ -675,7 +672,7 @@ export const MatchFixturesPage: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                  <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                     Date du match *
                   </label>
                   <input
@@ -683,12 +680,12 @@ export const MatchFixturesPage: React.FC = () => {
                     required
                     value={matchDate}
                     onChange={(e) => setMatchDate(e.target.value)}
-                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white font-mono"
+                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 font-mono focus:bg-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                  <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                     Heure du coup d'envoi *
                   </label>
                   <input
@@ -696,14 +693,14 @@ export const MatchFixturesPage: React.FC = () => {
                     required
                     value={matchTime}
                     onChange={(e) => setMatchTime(e.target.value)}
-                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white font-mono"
+                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 font-mono focus:bg-white"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                  <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                     Stade / Terrain
                   </label>
                   <input
@@ -711,12 +708,12 @@ export const MatchFixturesPage: React.FC = () => {
                     value={stadium}
                     onChange={(e) => setStadium(e.target.value)}
                     placeholder="Stade Municipal de Lessouda"
-                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+                  <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                     Accès / Billetterie
                   </label>
                   <input
@@ -724,22 +721,22 @@ export const MatchFixturesPage: React.FC = () => {
                     value={ticketPrice}
                     onChange={(e) => setTicketPrice(e.target.value)}
                     placeholder="Entrée Gratuite"
-                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                    className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
                   />
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-zinc-800 flex justify-end gap-3">
+              <div className="pt-4 border-t border-zinc-200 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsFixtureModalOpen(false)}
-                  className="px-4 py-2 bg-zinc-900 text-zinc-300 text-xs font-semibold rounded-xl"
+                  className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 text-xs font-semibold rounded-xl cursor-pointer"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-white text-zinc-950 font-black text-xs uppercase rounded-xl shadow cursor-pointer"
+                  className="px-5 py-2 bg-zinc-950 hover:bg-zinc-800 text-white font-black text-xs uppercase rounded-xl shadow cursor-pointer"
                 >
                   {editingFixtureId ? 'Sauvegarder' : 'Créer le match'}
                 </button>
@@ -751,31 +748,31 @@ export const MatchFixturesPage: React.FC = () => {
 
       {/* ================= MODAL: UPDATE SCORE & PUBLISH TO NEWS ================= */}
       {isScoreModalOpen && scoreFixture && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-xl my-8 bg-zinc-950 border border-zinc-800 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-100 max-h-[90vh] overflow-y-auto space-y-5">
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
-              <h3 className="text-xl font-black uppercase tracking-wider text-white font-heading">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-xl my-8 bg-white border border-zinc-200 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-900 max-h-[90vh] overflow-y-auto space-y-5">
+            <div className="flex items-center justify-between pb-4 border-b border-zinc-200">
+              <h3 className="text-xl font-black uppercase tracking-wider text-zinc-950 font-heading">
                 Score & Partage du Résultat dans News
               </h3>
               <button
                 onClick={() => setIsScoreModalOpen(false)}
-                className="text-zinc-400 hover:text-white"
+                className="text-zinc-500 hover:text-zinc-950 cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             {sharedNotice && (
-              <div className="p-3 bg-emerald-950/80 border border-emerald-800 text-emerald-200 text-xs rounded-xl flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
+              <div className="p-3 bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs rounded-xl flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-emerald-600" />
                 <span>{sharedNotice}</span>
               </div>
             )}
 
             {/* Score inputs */}
-            <div className="bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800 flex items-center justify-between gap-4">
+            <div className="bg-zinc-50 p-4 rounded-2xl border border-zinc-200 flex items-center justify-between gap-4">
               <div className="text-center flex-1">
-                <span className="text-xs font-bold text-white block mb-1 uppercase font-heading">
+                <span className="text-xs font-bold text-zinc-950 block mb-1 uppercase font-heading">
                   {scoreFixture.homeTeam.name}
                 </span>
                 <input
@@ -783,16 +780,16 @@ export const MatchFixturesPage: React.FC = () => {
                   min="0"
                   value={homeScoreInput}
                   onChange={(e) => setHomeScoreInput(Number(e.target.value))}
-                  className="w-16 px-2 py-1.5 bg-black border border-zinc-700 rounded-lg text-center font-mono font-black text-2xl text-white mx-auto block"
+                  className="w-16 px-2 py-1.5 bg-white border border-zinc-300 rounded-lg text-center font-mono font-black text-2xl text-zinc-950 mx-auto block shadow-xs"
                 />
               </div>
 
-              <span className="font-heading font-black text-xl text-zinc-500">
+              <span className="font-heading font-black text-xl text-zinc-400">
                 -
               </span>
 
               <div className="text-center flex-1">
-                <span className="text-xs font-bold text-white block mb-1 uppercase font-heading">
+                <span className="text-xs font-bold text-zinc-950 block mb-1 uppercase font-heading">
                   {scoreFixture.awayTeam.name}
                 </span>
                 <input
@@ -800,35 +797,35 @@ export const MatchFixturesPage: React.FC = () => {
                   min="0"
                   value={awayScoreInput}
                   onChange={(e) => setAwayScoreInput(Number(e.target.value))}
-                  className="w-16 px-2 py-1.5 bg-black border border-zinc-700 rounded-lg text-center font-mono font-black text-2xl text-white mx-auto block"
+                  className="w-16 px-2 py-1.5 bg-white border border-zinc-300 rounded-lg text-center font-mono font-black text-2xl text-zinc-950 mx-auto block shadow-xs"
                 />
               </div>
             </div>
 
             {/* Status Selector */}
             <div>
-              <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                 Statut de la rencontre
               </label>
-              <div className="grid grid-cols-3 gap-2 p-1 bg-zinc-900 rounded-xl border border-zinc-800 text-xs font-bold">
+              <div className="grid grid-cols-3 gap-2 p-1 bg-zinc-100 rounded-xl border border-zinc-200 text-xs font-bold">
                 <button
                   type="button"
                   onClick={() => setMatchStatusInput('upcoming')}
-                  className={`py-2 rounded-lg ${matchStatusInput === 'upcoming' ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400'}`}
+                  className={`py-2 rounded-lg cursor-pointer ${matchStatusInput === 'upcoming' ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600'}`}
                 >
                   À Venir
                 </button>
                 <button
                   type="button"
                   onClick={() => setMatchStatusInput('live')}
-                  className={`py-2 rounded-lg ${matchStatusInput === 'live' ? 'bg-red-600 text-white shadow' : 'text-zinc-400'}`}
+                  className={`py-2 rounded-lg cursor-pointer ${matchStatusInput === 'live' ? 'bg-red-600 text-white shadow-xs' : 'text-zinc-600'}`}
                 >
                   En Direct
                 </button>
                 <button
                   type="button"
                   onClick={() => setMatchStatusInput('finished')}
-                  className={`py-2 rounded-lg ${matchStatusInput === 'finished' ? 'bg-white text-zinc-950 shadow' : 'text-zinc-400'}`}
+                  className={`py-2 rounded-lg cursor-pointer ${matchStatusInput === 'finished' ? 'bg-zinc-950 text-white shadow-xs' : 'text-zinc-600'}`}
                 >
                   Terminé
                 </button>
@@ -837,7 +834,7 @@ export const MatchFixturesPage: React.FC = () => {
 
             {/* Scorers adding */}
             <div className="space-y-2">
-              <label className="block text-[11px] font-bold uppercase text-zinc-400">
+              <label className="block text-[11px] font-bold uppercase text-zinc-700">
                 Ajouter des Buteurs
               </label>
               <div className="flex gap-2">
@@ -846,19 +843,19 @@ export const MatchFixturesPage: React.FC = () => {
                   placeholder="Nom du joueur"
                   value={scorerPlayer}
                   onChange={(e) => setScorerPlayer(e.target.value)}
-                  className="flex-1 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                  className="flex-1 px-3 py-1.5 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
                 />
                 <input
                   type="text"
                   placeholder="Minute (ex: 35')"
                   value={scorerMinute}
                   onChange={(e) => setScorerMinute(e.target.value)}
-                  className="w-24 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white font-mono"
+                  className="w-24 px-3 py-1.5 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 font-mono focus:bg-white"
                 />
                 <button
                   type="button"
                   onClick={handleAddScorer}
-                  className="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold rounded-xl"
+                  className="px-3 py-1.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-xl cursor-pointer"
                 >
                   + Ajouter
                 </button>
@@ -869,13 +866,13 @@ export const MatchFixturesPage: React.FC = () => {
                   {tempScorers.map((s, i) => (
                     <span
                       key={i}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-lg text-xs text-zinc-300"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 border border-zinc-200 rounded-lg text-xs text-zinc-800"
                     >
                       <span>⚽ {s.player} ({s.minute})</span>
                       <button
                         type="button"
                         onClick={() => setTempScorers(tempScorers.filter((_, idx) => idx !== i))}
-                        className="text-zinc-500 hover:text-red-400"
+                        className="text-zinc-400 hover:text-red-600 cursor-pointer ml-1"
                       >
                         ✕
                       </button>
@@ -887,7 +884,7 @@ export const MatchFixturesPage: React.FC = () => {
 
             {/* Match Summary / Commentary */}
             <div>
-              <label className="block text-[11px] font-bold uppercase text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase text-zinc-700 mb-1">
                 Résumé du match & Commentaires pour les supporters
               </label>
               <textarea
@@ -895,16 +892,16 @@ export const MatchFixturesPage: React.FC = () => {
                 value={matchSummaryInput}
                 onChange={(e) => setMatchSummaryInput(e.target.value)}
                 placeholder="Décrivez les moments forts, l'engagement des joueurs et l'ambiance au stade..."
-                className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-xl text-xs text-white"
+                className="w-full px-3 py-2 bg-zinc-50 border border-zinc-300 rounded-xl text-xs text-zinc-900 focus:bg-white"
               />
             </div>
 
             {/* Actions: Save Score OR One-Click Share into News Section! */}
-            <div className="pt-4 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="pt-4 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-3">
               <button
                 type="button"
                 onClick={handleSaveScoreAndStatus}
-                className="w-full sm:w-auto px-4 py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-bold rounded-xl transition-colors"
+                className="w-full sm:w-auto px-4 py-2.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-800 text-xs font-bold rounded-xl transition-colors cursor-pointer"
               >
                 Sauvegarder le score seul
               </button>
@@ -912,7 +909,7 @@ export const MatchFixturesPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handlePublishToNewsDirectly}
-                className="w-full sm:w-auto px-5 py-2.5 bg-white hover:bg-zinc-200 text-zinc-950 font-black text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Share2 className="w-4 h-4" />
                 <span>Publier le Résultat dans News</span>

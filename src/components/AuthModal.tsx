@@ -72,20 +72,17 @@ export const AuthModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl overflow-y-auto">
-      {/* Background subtle athletic lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-zinc-800/20 via-transparent to-transparent pointer-events-none" />
-
-      <div className="relative w-full max-w-md my-8 bg-zinc-950 border border-zinc-800/90 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-md my-8 bg-white border border-zinc-200 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-900">
         {/* Crest & Club Identity */}
         <div className="text-center mb-6">
           <div className="inline-block relative mb-3">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-2xl bg-zinc-900 border border-zinc-800 p-1.5 shadow-2xl flex items-center justify-center overflow-hidden">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-2xl bg-zinc-950 border-2 border-zinc-300 p-2 shadow-md flex items-center justify-center overflow-hidden">
               <img
                 src={CLUB_LOGO}
                 alt={CLUB_NAME}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-contain filter drop-shadow-md"
+                className="w-full h-full object-contain filter drop-shadow-sm"
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.src.includes('/public/')) {
@@ -94,31 +91,31 @@ export const AuthModal: React.FC = () => {
                 }}
               />
             </div>
-            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-white text-zinc-950 px-2.5 py-0.5 rounded text-[10px] font-black tracking-widest shadow-lg uppercase font-heading">
+            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 bg-zinc-950 text-white px-3 py-0.5 rounded text-[10px] font-black tracking-widest shadow uppercase font-heading">
               {CLUB_FOUNDED}
             </div>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-white font-heading mt-2">
+          <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-zinc-950 font-heading mt-2">
             {CLUB_NAME}
           </h1>
-          <p className="text-xs sm:text-sm font-medium text-zinc-400 mt-0.5">
+          <p className="text-xs sm:text-sm font-semibold text-zinc-500 mt-0.5">
             {CLUB_NAME_AR}
           </p>
-          <p className="mt-2 text-xs text-zinc-400 max-w-xs mx-auto leading-relaxed">
+          <p className="mt-2 text-xs text-zinc-600 max-w-xs mx-auto leading-relaxed">
             Création de compte obligatoire pour accéder au portail officiel du club.
           </p>
         </div>
 
         {/* Tab switch */}
-        <div className="grid grid-cols-2 p-1 bg-zinc-900/90 rounded-xl mb-6 border border-zinc-800">
+        <div className="grid grid-cols-2 p-1 bg-zinc-100 rounded-xl mb-6 border border-zinc-200">
           <button
             type="button"
             onClick={() => { setTab('register'); setError(null); }}
-            className={`flex items-center justify-center gap-2 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+            className={`flex items-center justify-center gap-2 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
               tab === 'register'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950'
             }`}
           >
             <UserPlus className="w-3.5 h-3.5" />
@@ -127,10 +124,10 @@ export const AuthModal: React.FC = () => {
           <button
             type="button"
             onClick={() => { setTab('login'); setError(null); }}
-            className={`flex items-center justify-center gap-2 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+            className={`flex items-center justify-center gap-2 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all cursor-pointer ${
               tab === 'login'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950'
             }`}
           >
             <LogIn className="w-3.5 h-3.5" />
@@ -140,14 +137,14 @@ export const AuthModal: React.FC = () => {
 
         {/* Feedback alerts */}
         {error && (
-          <div className="mb-4 p-3 bg-red-950/60 border border-red-800/80 rounded-xl flex items-start gap-2.5 text-red-200 text-xs">
-            <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5 text-red-800 text-xs">
+            <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
         {success && (
-          <div className="mb-4 p-3 bg-emerald-950/60 border border-emerald-800/80 rounded-xl flex items-start gap-2.5 text-emerald-200 text-xs">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-start gap-2.5 text-emerald-800 text-xs">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <span>{success}</span>
           </div>
         )}
@@ -156,53 +153,53 @@ export const AuthModal: React.FC = () => {
         {tab === 'register' ? (
           <form onSubmit={handleRegister} className="space-y-3.5">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                 Nom complet *
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                <User className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                 <input
                   type="text"
                   required
                   placeholder="Votre nom et prénom"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                   E-mail *
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                  <Mail className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                   <input
                     type="email"
                     required
                     placeholder="nom@exemple.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                   Téléphone *
                 </label>
                 <div className="relative">
-                  <Phone className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                  <Phone className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                   <input
                     type="tel"
                     required
                     placeholder="Votre numéro"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                   />
                 </div>
               </div>
@@ -210,29 +207,29 @@ export const AuthModal: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                   Ville / Région
                 </label>
                 <div className="relative">
-                  <MapPin className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                  <MapPin className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                   <input
                     type="text"
                     placeholder="Lessouda / Sidi Bouzid"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                   Statut
                 </label>
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as any)}
-                  className="w-full px-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-white transition-all"
+                  className="w-full px-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-xs sm:text-sm text-zinc-900 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all cursor-pointer"
                 >
                   <option value="supporter">Supporter</option>
                   <option value="joueur">Joueur</option>
@@ -242,25 +239,25 @@ export const AuthModal: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                 Mot de passe *
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                <Lock className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                 <input
                   type="password"
                   required
                   placeholder="Min. 6 caractères"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full mt-2 py-3 px-4 bg-white hover:bg-zinc-200 text-zinc-950 font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-lg cursor-pointer"
+              className="w-full mt-2 py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
             >
               Finaliser l'inscription et entrer
             </button>
@@ -269,49 +266,49 @@ export const AuthModal: React.FC = () => {
           /* Form: Login */
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                 Adresse E-mail
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                <Mail className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                 <input
                   type="email"
                   required
                   placeholder="Votre adresse e-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-400 mb-1">
+              <label className="block text-[11px] font-bold uppercase tracking-wider text-zinc-700 mb-1">
                 Mot de passe
               </label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
+                <Lock className="w-4 h-4 text-zinc-400 absolute left-3 top-3" />
                 <input
                   type="password"
                   required
                   placeholder="Votre mot de passe"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all"
+                  className="w-full pl-9 pr-3 py-2.5 bg-zinc-50 border border-zinc-300 rounded-xl text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:bg-white focus:border-zinc-950 transition-all"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 px-4 bg-white hover:bg-zinc-200 text-zinc-950 font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-lg cursor-pointer"
+              className="w-full py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-md cursor-pointer"
             >
               Se connecter au portail
             </button>
           </form>
         )}
 
-        <div className="mt-6 pt-4 border-t border-zinc-900 text-center text-[11px] text-zinc-400">
+        <div className="mt-6 pt-4 border-t border-zinc-200 text-center text-[11px] text-zinc-500 font-medium">
           Lessouda Sportive (LSSB) &copy; 2012 - {new Date().getFullYear()} · Tous droits réservés
         </div>
       </div>

@@ -61,20 +61,20 @@ export const ShopSection: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100 pb-20">
+    <div className="min-h-screen bg-slate-50 text-zinc-900 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Top Header with BackButton */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200">
           <div className="flex items-center gap-4">
             <BackButton label="Retour" />
             <div>
               <div className="flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-white" />
-                <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-white font-heading">
+                <ShoppingBag className="w-5 h-5 text-zinc-950" />
+                <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-wider text-zinc-950 font-heading">
                   Boutique Officielle · Place de Marketing LSSB
                 </h1>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-xs text-zinc-600 mt-0.5">
                 Vente officielle des maillots et équipements sportifs du club
               </p>
             </div>
@@ -83,7 +83,7 @@ export const ShopSection: React.FC = () => {
           {isAdmin && (
             <button
               onClick={() => navigateTo('admin')}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-zinc-200 text-zinc-950 font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-950 hover:bg-zinc-800 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-xs shrink-0 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Gérer les articles (Admin)</span>
@@ -92,43 +92,43 @@ export const ShopSection: React.FC = () => {
         </div>
 
         {/* Categories Bar */}
-        <div className="flex items-center gap-2 py-4 overflow-x-auto border-b border-zinc-900 text-xs">
+        <div className="flex items-center gap-2 py-4 overflow-x-auto border-b border-zinc-200 text-xs">
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-colors whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl font-bold transition-colors whitespace-nowrap cursor-pointer ${
               selectedCategory === 'all'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
             Tous les articles ({shopProducts.length})
           </button>
           <button
             onClick={() => setSelectedCategory('maillot')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-colors whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl font-bold transition-colors whitespace-nowrap cursor-pointer ${
               selectedCategory === 'maillot'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
             Maillots de match
           </button>
           <button
             onClick={() => setSelectedCategory('survetement')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-colors whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl font-bold transition-colors whitespace-nowrap cursor-pointer ${
               selectedCategory === 'survetement'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
             Survêtements & Vestes
           </button>
           <button
             onClick={() => setSelectedCategory('accessoire')}
-            className={`px-3 py-1.5 rounded-lg font-semibold transition-colors whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl font-bold transition-colors whitespace-nowrap cursor-pointer ${
               selectedCategory === 'accessoire'
-                ? 'bg-white text-zinc-950 shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-zinc-950 text-white shadow-xs'
+                : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
             Accessoires & Écharpes
@@ -137,14 +137,14 @@ export const ShopSection: React.FC = () => {
 
         {/* Empty State / 100% Vierge */}
         {filteredProducts.length === 0 ? (
-          <div className="py-24 text-center bg-zinc-950 border border-zinc-800/80 rounded-3xl p-8 my-8 max-w-2xl mx-auto shadow-2xl">
-            <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto mb-4">
+          <div className="py-24 text-center bg-white border border-zinc-200 rounded-3xl p-8 my-8 max-w-2xl mx-auto shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mx-auto mb-4">
               <ShoppingBag className="w-8 h-8 text-zinc-500" />
             </div>
-            <h3 className="text-xl font-black uppercase text-white font-heading tracking-wider mb-2">
+            <h3 className="text-xl font-black uppercase text-zinc-950 font-heading tracking-wider mb-2">
               Boutique officielle vierge
             </h3>
-            <p className="text-xs text-zinc-400 max-w-md mx-auto leading-relaxed mb-6">
+            <p className="text-xs text-zinc-600 max-w-md mx-auto leading-relaxed mb-6">
               {isAdmin
                 ? "Aucun article n'est actuellement en vente. En tant qu'administrateur, vous pouvez publier les maillots de l'équipe et les équipements avec photos, tailles et tarifs."
                 : "Les maillots et produits officiels de Lessouda Sportive seront prochainement mis en vente en ligne par la direction."}
@@ -153,7 +153,7 @@ export const ShopSection: React.FC = () => {
             {isAdmin && (
               <button
                 onClick={() => navigateTo('admin')}
-                className="px-6 py-3 bg-white hover:bg-zinc-200 text-zinc-950 font-black text-xs uppercase tracking-wider rounded-xl shadow-lg transition-colors inline-flex items-center gap-2"
+                className="px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-sm transition-colors inline-flex items-center gap-2 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Publier un premier maillot</span>
@@ -161,31 +161,31 @@ export const ShopSection: React.FC = () => {
             )}
           </div>
         ) : (
-          /* Products Grid if admin has added products */
+          /* Products Grid */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
             {filteredProducts.map((product) => (
               <article
                 key={product.id}
-                className="bg-zinc-950 border border-zinc-800/80 hover:border-zinc-700 rounded-3xl overflow-hidden flex flex-col group transition-all duration-300 shadow-md"
+                className="bg-white border border-zinc-200 hover:border-zinc-300 rounded-3xl overflow-hidden flex flex-col group transition-all duration-300 shadow-xs hover:shadow-md"
               >
                 <div
                   onClick={() => handleOpenProduct(product)}
-                  className="relative aspect-square bg-zinc-900 cursor-pointer overflow-hidden"
+                  className="relative aspect-square bg-zinc-100 cursor-pointer overflow-hidden"
                 >
                   <img
                     src={product.images[0]}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
                   {product.badge && (
-                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-zinc-700 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                    <div className="absolute top-3 left-3 bg-zinc-950 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
                       {product.badge}
                     </div>
                   )}
 
-                  <div className="absolute bottom-3 right-3 bg-white text-zinc-950 font-black text-sm px-2.5 py-1 rounded-lg shadow-lg">
+                  <div className="absolute bottom-3 right-3 bg-white text-zinc-950 font-black text-sm px-2.5 py-1 rounded-lg shadow-sm border border-zinc-200">
                     {product.price} DT
                   </div>
                 </div>
@@ -194,11 +194,11 @@ export const ShopSection: React.FC = () => {
                   <div>
                     <h3
                       onClick={() => handleOpenProduct(product)}
-                      className="font-bold text-white text-base font-heading line-clamp-1 cursor-pointer group-hover:text-zinc-200 transition-colors"
+                      className="font-bold text-zinc-950 text-base font-heading line-clamp-1 cursor-pointer group-hover:text-zinc-700 transition-colors"
                     >
                       {product.name}
                     </h3>
-                    <p className="text-xs text-zinc-400 line-clamp-2 mt-1 leading-relaxed">
+                    <p className="text-xs text-zinc-600 line-clamp-2 mt-1 leading-relaxed">
                       {product.description}
                     </p>
 
@@ -206,7 +206,7 @@ export const ShopSection: React.FC = () => {
                       {product.sizes.map((s) => (
                         <span
                           key={s}
-                          className="text-[10px] font-mono px-1.5 py-0.5 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded"
+                          className="text-[10px] font-mono px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 text-zinc-700 rounded font-semibold"
                         >
                           {s}
                         </span>
@@ -214,17 +214,17 @@ export const ShopSection: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-zinc-900 flex items-center justify-between gap-2">
+                  <div className="pt-3 border-t border-zinc-100 flex items-center justify-between gap-2">
                     <button
                       onClick={() => handleOpenProduct(product)}
-                      className="text-xs text-zinc-400 hover:text-white font-medium"
+                      className="text-xs text-zinc-600 hover:text-zinc-950 font-semibold cursor-pointer"
                     >
                       Détails
                     </button>
 
                     <button
                       onClick={() => handleOpenProduct(product)}
-                      className="px-3.5 py-1.5 bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-xs uppercase tracking-wider rounded-xl transition-colors flex items-center gap-1.5 shadow"
+                      className="px-3.5 py-1.5 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       <span>Commander</span>
@@ -239,22 +239,22 @@ export const ShopSection: React.FC = () => {
 
       {/* Order Modal via WhatsApp */}
       {activeProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-2xl my-8 bg-zinc-950 border border-zinc-800 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-100 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-800 mb-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-2xl my-8 bg-white border border-zinc-200 rounded-3xl shadow-2xl p-6 sm:p-8 text-zinc-900 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-zinc-200 mb-5">
               <button
                 onClick={() => setActiveProduct(null)}
-                className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white"
+                className="inline-flex items-center gap-2 text-xs font-bold text-zinc-600 hover:text-zinc-950 cursor-pointer"
               >
                 ← Continuer les achats
               </button>
-              <span className="text-xs font-mono text-zinc-400">
+              <span className="text-xs font-mono font-bold text-zinc-500">
                 Boutique Officielle LSSB
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-900">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100">
                 <img
                   src={activeProduct.images[0]}
                   alt={activeProduct.name}
@@ -264,27 +264,27 @@ export const ShopSection: React.FC = () => {
 
               <div className="space-y-4 flex flex-col justify-between">
                 <div>
-                  <span className="text-xs uppercase font-bold text-zinc-400 tracking-wider">
+                  <span className="text-xs uppercase font-bold text-zinc-500 tracking-wider">
                     {activeProduct.category}
                   </span>
-                  <h2 className="text-2xl font-black uppercase text-white font-heading mt-0.5">
+                  <h2 className="text-2xl font-black uppercase text-zinc-950 font-heading mt-0.5">
                     {activeProduct.name}
                   </h2>
 
                   <div className="flex items-baseline gap-2 my-2">
-                    <span className="text-3xl font-black text-white font-heading">
+                    <span className="text-3xl font-black text-zinc-950 font-heading">
                       {activeProduct.price} DT
                     </span>
                   </div>
 
-                  <p className="text-xs text-zinc-300 leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     {activeProduct.description}
                   </p>
                 </div>
 
                 {/* Size Selector */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">
                     Taille :
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -293,10 +293,10 @@ export const ShopSection: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setSelectedSize(s)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                           selectedSize === s
-                            ? 'bg-white text-zinc-950 shadow-md ring-2 ring-white'
-                            : 'bg-zinc-900 text-zinc-300 border border-zinc-800'
+                            ? 'bg-zinc-950 text-white shadow-xs'
+                            : 'bg-zinc-100 text-zinc-700 border border-zinc-200 hover:bg-zinc-200'
                         }`}
                       >
                         {s}
@@ -307,30 +307,30 @@ export const ShopSection: React.FC = () => {
 
                 {/* Quantity */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-700 mb-2">
                     Quantité :
                   </label>
-                  <div className="inline-flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-1">
+                  <div className="inline-flex items-center bg-zinc-100 border border-zinc-200 rounded-lg p-1">
                     <button
                       type="button"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-2.5 py-1 text-sm font-bold text-zinc-300 hover:text-white"
+                      className="px-2.5 py-1 text-sm font-bold text-zinc-700 hover:text-zinc-950 cursor-pointer"
                     >
                       -
                     </button>
-                    <span className="px-4 py-1 text-xs font-bold font-mono text-white">
+                    <span className="px-4 py-1 text-xs font-bold font-mono text-zinc-950">
                       {quantity}
                     </span>
                     <button
                       type="button"
                       onClick={() => setQuantity(quantity + 1)}
-                      className="px-2.5 py-1 text-sm font-bold text-zinc-300 hover:text-white"
+                      className="px-2.5 py-1 text-sm font-bold text-zinc-700 hover:text-zinc-950 cursor-pointer"
                     >
                       +
                     </button>
                   </div>
-                  <span className="text-xs text-zinc-400 ml-3">
-                    Total : <strong className="text-white font-mono">{activeProduct.price * quantity} DT</strong>
+                  <span className="text-xs text-zinc-500 ml-3">
+                    Total : <strong className="text-zinc-950 font-mono">{activeProduct.price * quantity} DT</strong>
                   </span>
                 </div>
 
@@ -338,7 +338,7 @@ export const ShopSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleOrderViaWhatsApp(activeProduct)}
-                  className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-lg flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Commander via WhatsApp</span>

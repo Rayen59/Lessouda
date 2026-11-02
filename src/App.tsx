@@ -14,17 +14,17 @@ import { Footer } from './components/Footer';
 const AppContent: React.FC = () => {
   const { currentUser, currentView, isAdmin } = useApp();
 
-  // Mandatory Authentication Gate
+  // Mandatory Authentication Gate - Clean, white dominant athletic style
   if (!currentUser) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-slate-100/90 flex items-center justify-center p-4">
         <AuthModal />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100 flex flex-col font-sans selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-slate-50 text-zinc-900 flex flex-col font-sans selection:bg-zinc-900 selection:text-white">
       <Navbar />
 
       <main className="flex-1">

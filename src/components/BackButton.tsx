@@ -18,10 +18,10 @@ export const BackButton: React.FC<BackButtonProps> = ({ label = "Retour à la pa
   return (
     <button
       onClick={goBack}
-      className={`group inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-900/80 hover:bg-zinc-800/90 border border-zinc-800 hover:border-zinc-700 rounded-lg backdrop-blur-sm transition-all duration-200 shadow-sm ${className}`}
+      className={`group inline-flex items-center gap-2 px-3.5 py-2 text-xs sm:text-sm font-bold text-zinc-700 hover:text-zinc-950 bg-white hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 rounded-xl transition-all duration-200 shadow-xs cursor-pointer ${className}`}
       title="Revenir à la page précédente"
     >
-      <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-zinc-400 group-hover:text-white" />
+      <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-zinc-500 group-hover:text-zinc-950" />
       <span className="whitespace-nowrap tracking-wide">{label}</span>
     </button>
   );

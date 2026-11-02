@@ -17,6 +17,8 @@ import {
   CLUB_NAME
 } from '../data/constants';
 
+import { idbGet, idbSet, idbRemove, idbClear } from '../utils/storage';
+
 export type AppView =
   | 'pistes'
   | 'fixtures'
@@ -93,14 +95,14 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
-  CURRENT_USER: 'lssb_current_user_v4',
-  USERS: 'lssb_users_list_v4',
-  FACILITIES: 'lssb_facilities_v4',
-  NEWS: 'lssb_news_v4',
-  SHOP: 'lssb_shop_v4',
-  LIVES: 'lssb_lives_v4',
-  FIXTURES: 'lssb_fixtures_v4',
-  ACTIVE_LIVE: 'lssb_active_live_v4'
+  CURRENT_USER: 'lssb_current_user_v5',
+  USERS: 'lssb_users_list_v5',
+  FACILITIES: 'lssb_facilities_v5',
+  NEWS: 'lssb_news_v5',
+  SHOP: 'lssb_shop_v5',
+  LIVES: 'lssb_lives_v5',
+  FIXTURES: 'lssb_fixtures_v5',
+  ACTIVE_LIVE: 'lssb_active_live_v5'
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -176,6 +178,49 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   });
 
+  // Async load large records from IndexedDB on startup
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      try {
+        const idbFacilities = await idbGet<FacilityPost[]>(STORAGE_KEYS.FACILITIES);
+        if (isMounted && idbFacilities && idbFacilities.length > 0) {
+          setFacilityPosts(idbFacilities);
+        }
+
+        const idbUsers = await idbGet<UserAccount[]>(STORAGE_KEYS.USERS);
+        if (isMounted && idbUsers && idbUsers.length > 0) {
+          setUsersList(idbUsers);
+        }
+
+        const idbNews = await idbGet<NewsArticle[]>(STORAGE_KEYS.NEWS);
+        if (isMounted && idbNews && idbNews.length > 0) {
+          setNewsArticles(idbNews);
+        }
+
+        const idbShop = await idbGet<ShopProduct[]>(STORAGE_KEYS.SHOP);
+        if (isMounted && idbShop && idbShop.length > 0) {
+          setShopProducts(idbShop);
+        }
+
+        const idbLives = await idbGet<LiveStreamSession[]>(STORAGE_KEYS.LIVES);
+        if (isMounted && idbLives && idbLives.length > 0) {
+          setLiveSessions(idbLives);
+        }
+
+        const idbFixtures = await idbGet<MatchFixture[]>(STORAGE_KEYS.FIXTURES);
+        if (isMounted && idbFixtures && idbFixtures.length > 0) {
+          setFixtures(idbFixtures);
+        }
+      } catch (err) {
+        console.warn('Error reading from IndexedDB:', err);
+      }
+    })();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // Navigation
   const [currentView, setCurrentView] = useState<AppView>('pistes');
   const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
@@ -183,44 +228,74 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [selectedNewsId, setSelectedNewsId] = useState<string | null>(null);
   const [viewHistory, setViewHistory] = useState<{ view: AppView; id?: string | null }[]>([]);
 
-  // Sync state
+  // Safe sync state to both IndexedDB (high capacity) & LocalStorage (fast preview fallback)
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+      try {
+        localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(currentUser));
+      } catch {}
+      idbSet(STORAGE_KEYS.CURRENT_USER, currentUser);
     } else {
-      localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+      try {
+        localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+      } catch {}
+      idbRemove(STORAGE_KEYS.CURRENT_USER);
     }
   }, [currentUser]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(usersList));
+    try {
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(usersList));
+    } catch {}
+    idbSet(STORAGE_KEYS.USERS, usersList);
   }, [usersList]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.FACILITIES, JSON.stringify(facilityPosts));
+    try {
+      localStorage.setItem(STORAGE_KEYS.FACILITIES, JSON.stringify(facilityPosts));
+    } catch {}
+    idbSet(STORAGE_KEYS.FACILITIES, facilityPosts);
   }, [facilityPosts]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.NEWS, JSON.stringify(newsArticles));
+    try {
+      localStorage.setItem(STORAGE_KEYS.NEWS, JSON.stringify(newsArticles));
+    } catch {}
+    idbSet(STORAGE_KEYS.NEWS, newsArticles);
   }, [newsArticles]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.SHOP, JSON.stringify(shopProducts));
+    try {
+      localStorage.setItem(STORAGE_KEYS.SHOP, JSON.stringify(shopProducts));
+    } catch {}
+    idbSet(STORAGE_KEYS.SHOP, shopProducts);
   }, [shopProducts]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.LIVES, JSON.stringify(liveSessions));
+    try {
+      localStorage.setItem(STORAGE_KEYS.LIVES, JSON.stringify(liveSessions));
+    } catch {}
+    idbSet(STORAGE_KEYS.LIVES, liveSessions);
   }, [liveSessions]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.FIXTURES, JSON.stringify(fixtures));
+    try {
+      localStorage.setItem(STORAGE_KEYS.FIXTURES, JSON.stringify(fixtures));
+    } catch {}
+    idbSet(STORAGE_KEYS.FIXTURES, fixtures);
   }, [fixtures]);
 
   useEffect(() => {
     if (activeLive) {
-      localStorage.setItem(STORAGE_KEYS.ACTIVE_LIVE, JSON.stringify(activeLive));
+      try {
+        localStorage.setItem(STORAGE_KEYS.ACTIVE_LIVE, JSON.stringify(activeLive));
+      } catch {}
+      idbSet(STORAGE_KEYS.ACTIVE_LIVE, activeLive);
     } else {
-      localStorage.removeItem(STORAGE_KEYS.ACTIVE_LIVE);
+      try {
+        localStorage.removeItem(STORAGE_KEYS.ACTIVE_LIVE);
+      } catch {}
+      idbRemove(STORAGE_KEYS.ACTIVE_LIVE);
     }
   }, [activeLive]);
 
@@ -637,6 +712,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setLiveSessions([]);
     setFixtures([]);
     setActiveLive(null);
+    idbClear();
   };
 
   return (

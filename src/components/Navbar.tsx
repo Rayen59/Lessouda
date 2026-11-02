@@ -8,15 +8,15 @@ export const Navbar: React.FC = () => {
   const upcomingCount = fixtures.filter((f) => f.status === 'upcoming' || f.status === 'live').length;
 
   return (
-    <header className="sticky top-0 z-40 bg-zinc-950/95 border-b border-zinc-800/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 bg-white/95 border-b border-zinc-200 backdrop-blur-md shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-8 h-18">
+        <div className="flex items-center justify-between gap-6 h-18">
           {/* Zone 1: Brand Wordmark & Crest */}
           <button
             onClick={() => navigateTo('pistes')}
             className="flex items-center gap-3 text-left focus:outline-none group shrink-0 cursor-pointer"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-zinc-900 border border-zinc-800 p-0.5 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-zinc-950 border border-zinc-300 p-0.5 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 shadow-sm">
               <img
                 src={CLUB_LOGO}
                 alt={CLUB_SHORT}
@@ -31,23 +31,23 @@ export const Navbar: React.FC = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-black uppercase tracking-wider text-white font-heading group-hover:text-zinc-200 transition-colors whitespace-nowrap">
+              <span className="text-lg sm:text-xl font-black uppercase tracking-wider text-zinc-950 font-heading group-hover:text-zinc-700 transition-colors whitespace-nowrap">
                 {CLUB_NAME}
               </span>
-              <span className="text-[11px] font-semibold text-zinc-400 tracking-widest uppercase">
-                {CLUB_SHORT} · 2012
+              <span className="text-[11px] font-bold text-zinc-500 tracking-widest uppercase">
+                {CLUB_SHORT} · FONDÉ EN 2012
               </span>
             </div>
           </button>
 
           {/* Zone 2: Navigation links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
             <button
               onClick={() => navigateTo('pistes')}
               className={`whitespace-nowrap transition-colors py-1 cursor-pointer ${
                 currentView === 'pistes' || currentView === 'post-detail'
-                  ? 'text-white border-b-2 border-white font-bold'
-                  : 'text-zinc-400 hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               Terrains & Pistes
@@ -57,14 +57,14 @@ export const Navbar: React.FC = () => {
               onClick={() => navigateTo('fixtures')}
               className={`whitespace-nowrap flex items-center gap-1.5 transition-colors py-1 cursor-pointer ${
                 currentView === 'fixtures'
-                  ? 'text-white border-b-2 border-white font-bold'
-                  : 'text-zinc-400 hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
-              <Trophy className="w-3.5 h-3.5" />
+              <Trophy className="w-3.5 h-3.5 text-zinc-800" />
               <span>Matchs & Calendrier</span>
               {upcomingCount > 0 && (
-                <span className="text-[10px] bg-zinc-800 text-white px-1.5 py-0.2 rounded-full font-mono">
+                <span className="text-[10px] bg-zinc-900 text-white px-1.5 py-0.2 rounded-full font-mono">
                   {upcomingCount}
                 </span>
               )}
@@ -74,27 +74,27 @@ export const Navbar: React.FC = () => {
               onClick={() => navigateTo('news')}
               className={`whitespace-nowrap transition-colors py-1 cursor-pointer ${
                 currentView === 'news' || currentView === 'news-detail'
-                  ? 'text-white border-b-2 border-white font-bold'
-                  : 'text-zinc-400 hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
-              Actualités
+              Actualités & Scores
             </button>
 
             <button
               onClick={() => navigateTo('live')}
               className={`whitespace-nowrap flex items-center gap-1.5 transition-colors py-1 cursor-pointer ${
                 currentView === 'live'
-                  ? 'text-white border-b-2 border-white font-bold'
-                  : 'text-zinc-400 hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               {activeLive && (
-                <Radio className="w-3.5 h-3.5 text-red-500 animate-pulse" />
+                <Radio className="w-3.5 h-3.5 text-red-600 animate-pulse" />
               )}
               <span>Directs & Replays</span>
               {activeLive && (
-                <span className="text-[10px] font-bold text-red-400 bg-red-950/80 border border-red-800 px-1.5 rounded">
+                <span className="text-[10px] font-black text-red-600 bg-red-50 border border-red-300 px-1.5 rounded">
                   LIVE
                 </span>
               )}
@@ -104,8 +104,8 @@ export const Navbar: React.FC = () => {
               onClick={() => navigateTo('shop')}
               className={`whitespace-nowrap transition-colors py-1 cursor-pointer ${
                 currentView === 'shop' || currentView === 'product-detail'
-                  ? 'text-white border-b-2 border-white font-bold'
-                  : 'text-zinc-400 hover:text-white'
+                  ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                  : 'text-zinc-600 hover:text-zinc-950'
               }`}
             >
               Boutique Officielle
@@ -116,24 +116,24 @@ export const Navbar: React.FC = () => {
                 onClick={() => navigateTo('admin')}
                 className={`whitespace-nowrap flex items-center gap-1.5 transition-colors py-1 cursor-pointer ${
                   currentView === 'admin'
-                    ? 'text-white border-b-2 border-white font-bold'
-                    : 'text-zinc-300 hover:text-white'
+                    ? 'text-zinc-950 border-b-2 border-zinc-950 font-black'
+                    : 'text-zinc-700 hover:text-zinc-950'
                 }`}
               >
-                <Shield className="w-4 h-4 text-white" />
+                <Shield className="w-4 h-4 text-zinc-950" />
                 <span>Espace Admin</span>
               </button>
             )}
           </nav>
 
-          {/* Zone 3: 1 Primary action */}
+          {/* Zone 3: Actions */}
           <div className="flex items-center gap-3 shrink-0">
             {currentUser && (
               <div className="flex items-center gap-2">
                 {isAdmin ? (
                   <button
                     onClick={() => navigateTo('admin')}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-black text-zinc-950 bg-white hover:bg-zinc-200 rounded-xl transition-colors shadow cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-black text-white bg-zinc-950 hover:bg-zinc-800 rounded-xl transition-colors shadow-sm cursor-pointer"
                   >
                     <Shield className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">Admin LSSB</span>
@@ -141,9 +141,9 @@ export const Navbar: React.FC = () => {
                 ) : (
                   <button
                     onClick={() => navigateTo('profile')}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-300 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-zinc-700 transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-800 bg-zinc-100 border border-zinc-200 rounded-xl hover:bg-zinc-200 transition-colors"
                   >
-                    <UserCheck className="w-3.5 h-3.5 text-zinc-400" />
+                    <UserCheck className="w-3.5 h-3.5 text-zinc-600" />
                     <span className="max-w-[100px] truncate hidden sm:inline">
                       {currentUser.fullName}
                     </span>
@@ -152,7 +152,7 @@ export const Navbar: React.FC = () => {
 
                 <button
                   onClick={logout}
-                  className="p-2 text-zinc-400 hover:text-red-400 hover:bg-zinc-900 rounded-xl border border-transparent hover:border-zinc-800 transition-colors cursor-pointer"
+                  className="p-2 text-zinc-500 hover:text-red-600 hover:bg-zinc-100 rounded-xl border border-transparent hover:border-zinc-200 transition-colors cursor-pointer"
                   title="Se déconnecter"
                 >
                   <LogOut className="w-4 h-4" />
@@ -163,44 +163,44 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className="flex lg:hidden items-center justify-between py-2.5 border-t border-zinc-900 text-xs overflow-x-auto gap-2">
+        <div className="flex lg:hidden items-center justify-between py-2 border-t border-zinc-200 text-xs overflow-x-auto gap-2">
           <button
             onClick={() => navigateTo('pistes')}
-            className={`whitespace-nowrap px-2.5 py-1 rounded-lg ${
-              currentView === 'pistes' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-400'
+            className={`whitespace-nowrap px-3 py-1 rounded-lg font-semibold ${
+              currentView === 'pistes' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-600'
             }`}
           >
             Terrains
           </button>
           <button
             onClick={() => navigateTo('fixtures')}
-            className={`whitespace-nowrap px-2.5 py-1 rounded-lg ${
-              currentView === 'fixtures' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-400'
+            className={`whitespace-nowrap px-3 py-1 rounded-lg font-semibold ${
+              currentView === 'fixtures' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-600'
             }`}
           >
             Matchs
           </button>
           <button
             onClick={() => navigateTo('news')}
-            className={`whitespace-nowrap px-2.5 py-1 rounded-lg ${
-              currentView === 'news' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-400'
+            className={`whitespace-nowrap px-3 py-1 rounded-lg font-semibold ${
+              currentView === 'news' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-600'
             }`}
           >
             Actualités
           </button>
           <button
             onClick={() => navigateTo('live')}
-            className={`whitespace-nowrap px-2.5 py-1 rounded-lg flex items-center gap-1 ${
-              currentView === 'live' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-400'
+            className={`whitespace-nowrap px-3 py-1 rounded-lg flex items-center gap-1 font-semibold ${
+              currentView === 'live' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-600'
             }`}
           >
-            {activeLive && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />}
+            {activeLive && <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />}
             Directs
           </button>
           <button
             onClick={() => navigateTo('shop')}
-            className={`whitespace-nowrap px-2.5 py-1 rounded-lg ${
-              currentView === 'shop' ? 'bg-white text-zinc-950 font-bold' : 'text-zinc-400'
+            className={`whitespace-nowrap px-3 py-1 rounded-lg font-semibold ${
+              currentView === 'shop' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-600'
             }`}
           >
             Boutique
@@ -208,8 +208,8 @@ export const Navbar: React.FC = () => {
           {isAdmin && (
             <button
               onClick={() => navigateTo('admin')}
-              className={`whitespace-nowrap px-2.5 py-1 rounded-lg flex items-center gap-1 ${
-                currentView === 'admin' ? 'bg-white text-zinc-950 font-bold' : 'text-white'
+              className={`whitespace-nowrap px-3 py-1 rounded-lg flex items-center gap-1 font-semibold ${
+                currentView === 'admin' ? 'bg-zinc-950 text-white font-bold' : 'text-zinc-900 font-bold'
               }`}
             >
               <Shield className="w-3 h-3" />
