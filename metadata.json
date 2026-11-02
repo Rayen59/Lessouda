@@ -1,0 +1,6 @@
+{
+  "name": "Lessouda Sportive - Club Officiel",
+  "description": "Portail officiel de Lessouda Sportive (LSSB 2012) - Actualités, Terrains, Directs, Replays et Boutique Officielle.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
